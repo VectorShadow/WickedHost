@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="DataVector">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/uwm/DataVector/out/artifacts/ServerTest/DataVector.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

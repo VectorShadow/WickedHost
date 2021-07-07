@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="whost">
+    <output-path>$PROJECT_DIR$/out/artifacts/whost</output-path>
+    <root id="archive" name="whost">
+      <element id="module-output" name="WickedHost" />
+      <element id="module-output" name="DataVector" />
+      <element id="module-output" name="WickedLegacy" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/20.1.0/annotations-20.1.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

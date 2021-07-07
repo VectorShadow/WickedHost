@@ -7,5 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="DataVector" exported="" />
+    <orderEntry type="module" module-name="WickedLegacy" exported="" />
   </component>
 </module>
