@@ -15,7 +15,7 @@ import static vsdl.wl.elements.DataMessageHeaders.SESSION_KEY;
 
 public class WHostDataMessageHandler implements DataMessageHandler {
     @Override
-    public void handle(DataMessage dataMessage, DataLink dataLink) {
+    public void handle(DataMessage dataMessage, int id) {
         System.out.println("Received message: " + dataMessage.toString());
         ArrayList<String> blocks = dataMessage.toBlocks();
         String header = blocks.get(0);
@@ -29,12 +29,12 @@ public class WHostDataMessageHandler implements DataMessageHandler {
     }
 
     @Override
-    public void handleDataLinkError(Exception e, DataLink dataLink) {
+    public void handleDataLinkError(Exception e, int id) {
 
     }
 
     @Override
-    public void handleDataLinkClosure(DataLink dl) {
+    public void handleDataLinkClosure(int id) {
 
     }
 }

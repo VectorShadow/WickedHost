@@ -1,25 +1,25 @@
 package vsdl.whost.exec;
 
+import vsdl.datavector.link.LinkSessionManager;
 import vsdl.whost.connections.ConnectionListenerDaemon;
-import vsdl.whost.connections.ConnectionManager;
 import vsdl.whost.connections.WHostDataMessageHandler;
 
 public class WHostEntityManager {
 
-    private static ConnectionListenerDaemon CONNECTION_LISTENER_DAEMON = null;
-    private static ConnectionManager CONNECTION_MGR = null;
+    private static ConnectionListenerDaemon connectionListenerDaemon = null;
+    private static LinkSessionManager linkSessionManager = null;
 
     public static ConnectionListenerDaemon getConnectionListenerDaemon() {
-        if (CONNECTION_LISTENER_DAEMON == null) {
-            CONNECTION_LISTENER_DAEMON = new ConnectionListenerDaemon();
+        if (connectionListenerDaemon == null) {
+            connectionListenerDaemon = new ConnectionListenerDaemon();
         }
-        return CONNECTION_LISTENER_DAEMON;
+        return connectionListenerDaemon;
     }
 
-    public static ConnectionManager getConnectionManager() {
-        if (CONNECTION_MGR == null) {
-            CONNECTION_MGR = new ConnectionManager(new WHostDataMessageHandler());
+    public static LinkSessionManager getLinkSessionManager() {
+        if (linkSessionManager == null) {
+            linkSessionManager = new LinkSessionManager(new WHostDataMessageHandler());
         }
-        return CONNECTION_MGR;
+        return linkSessionManager;
     }
 }
