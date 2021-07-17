@@ -1,6 +1,7 @@
 package vsdl.whost.connections;
 
 import vsdl.datavector.api.DataMessageHandler;
+import vsdl.datavector.crypto.CryptoUtilities;
 import vsdl.datavector.crypto.RSA;
 import vsdl.datavector.elements.DataMessageBuilder;
 import vsdl.datavector.link.DataLink;
@@ -25,7 +26,7 @@ public class ConnectionManager {
         dl.transmit(
                 DataMessageBuilder
                         .start(DataMessageHeaders.PUBLIC_KEY)
-                        .addBlock(RSA.getSessionPublicKey().toString(Character.MAX_RADIX))
+                        .addBlock(CryptoUtilities.toAlphaNumeric(RSA.getSessionPublicKey()))
                         .build()
         );
     }

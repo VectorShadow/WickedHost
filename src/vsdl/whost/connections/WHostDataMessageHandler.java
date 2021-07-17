@@ -1,6 +1,7 @@
 package vsdl.whost.connections;
 
 import vsdl.datavector.api.DataMessageHandler;
+import vsdl.datavector.crypto.CryptoUtilities;
 import vsdl.datavector.crypto.RSA;
 import vsdl.datavector.elements.DataMessage;
 import vsdl.datavector.elements.DataMessageBuilder;
@@ -21,7 +22,7 @@ public class WHostDataMessageHandler implements DataMessageHandler {
         switch (header) {
             case SESSION_KEY:
                 //todo - save this result as the session key in the connection manager for this link
-                System.out.println(RSA.decrypt(new BigInteger(blocks.get(1), Character.MAX_RADIX)).toString(Character.MAX_RADIX));
+                System.out.println(CryptoUtilities.toAlphaNumeric(RSA.decrypt(CryptoUtilities.fromAlphaNumeric(blocks.get(1)))));
                 break;
             default:
         }
