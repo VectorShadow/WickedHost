@@ -6,12 +6,12 @@ import vsdl.datavector.link.DataLink;
 
 public class WHostDataMessageHandler implements DataMessageHandler {
     @Override
-    public void handle(DataMessage dataMessage) {
+    public void handle(DataMessage dataMessage, DataLink dataLink) {
         System.out.println("Received message: " + dataMessage.toString());
     }
 
     @Override
-    public void handleDataLinkError(Exception e) {
+    public void handleDataLinkError(Exception e, DataLink dataLink) {
 
     }
 
