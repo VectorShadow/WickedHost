@@ -1,12 +1,10 @@
 package vsdl.whost.connections;
 
 import vsdl.datavector.api.DataMessageHandler;
-import vsdl.datavector.crypto.CryptoUtilities;
 import vsdl.datavector.crypto.RSA;
-import vsdl.datavector.elements.DataMessage;
 import vsdl.datavector.elements.DataMessageBuilder;
 import vsdl.datavector.link.DataLink;
-import vsdl.wl.elements.DataMessageType;
+import vsdl.wl.elements.DataMessageHeaders;
 
 import java.net.Socket;
 import java.util.ArrayList;
@@ -26,7 +24,7 @@ public class ConnectionManager {
         CONNECTIONS.add(new Connection(dl));
         dl.transmit(
                 DataMessageBuilder
-                        .start(DataMessageType.PUBLIC_KEY.name())
+                        .start(DataMessageHeaders.PUBLIC_KEY)
                         .addBlock(RSA.getSessionPublicKey().toString(Character.MAX_RADIX))
                         .build()
         );
