@@ -51,7 +51,32 @@ public class WHostDataMessageHandler implements DataMessageHandler {
                 //todo - accountprovider class to handle this and create
                 break;
             case CREATE_ACCOUNT:
-                System.out.println("Received account creation request.");
+                final String salt = blocks.get(3);
+                final String decryptedPassword =
+                        CryptoUtilities.toAlphaNumeric(
+                                Encryption.encryptDecrypt(
+                                        getLinkSessionManager()
+                                                .getSessionByID(id)
+                                                .getSessionSecret(),
+                                        CryptoUtilities
+                                                .fromAlphaNumeric(
+                                                        blocks.get(2)
+                                                )
+                                )
+                        );
+                final String hashedPassword = CryptoUtilities.hash(CryptoUtilities.salt(decryptedPassword, salt));
+                System.out.println(
+                        "Received login data - Username: " +
+                                blocks.get(1) +
+                                "\nEncrypted Password: " +
+                                blocks.get(2) +
+                                "\nDecrypted Password: " +
+                                decryptedPassword +
+                                "\nSalt: " +
+                                salt +
+                                "\nHashed and Salted Password: " +
+                                hashedPassword
+                );
                 break;
             default:
         }
