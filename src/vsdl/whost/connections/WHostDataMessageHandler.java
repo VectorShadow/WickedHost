@@ -10,8 +10,7 @@ import vsdl.datavector.link.DataLink;
 import java.math.BigInteger;
 import java.util.ArrayList;
 
-import static vsdl.wl.elements.DataMessageHeaders.PUBLIC_KEY;
-import static vsdl.wl.elements.DataMessageHeaders.SESSION_KEY;
+import static vsdl.wl.elements.DataMessageHeaders.*;
 
 public class WHostDataMessageHandler implements DataMessageHandler {
     @Override
@@ -23,6 +22,18 @@ public class WHostDataMessageHandler implements DataMessageHandler {
             case SESSION_KEY:
                 //todo - save this result as the session key in the connection manager for this link
                 System.out.println(CryptoUtilities.toAlphaNumeric(RSA.decrypt(CryptoUtilities.fromAlphaNumeric(blocks.get(1)))));
+                break;
+            case LOGIN_ACCOUNT:
+                System.out.println(
+                        "Received login data - Username: " +
+                                blocks.get(1) +
+                                " Encrypted Password: " +
+                                blocks.get(2)
+                );
+                //todo - accountprovider class to handle this and create
+                break;
+            case CREATE_ACCOUNT:
+                System.out.println("Received account creation request.");
                 break;
             default:
         }
