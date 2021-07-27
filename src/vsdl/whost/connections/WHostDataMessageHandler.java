@@ -30,6 +30,16 @@ public class WHostDataMessageHandler implements DataMessageHandler {
                         );
                 break;
             case LOGIN_ACCOUNT:
+                final String loginUsername = blocks.get(1);
+                if (!getDataProvider().queryAccount(loginUsername)) {
+                    //todo - send account does not exist message to client
+                    break;
+                }
+                if (!getDataProvider().loginAccount(loginUsername, blocks.get(2))) {
+                    //todo - send login error message to client
+                    break;
+                }
+                //todo - load account data and send to client - should we track the connected account on this end?
                 System.out.println(
                         "Received login data - Username: " +
                                 blocks.get(1) +
@@ -48,10 +58,12 @@ public class WHostDataMessageHandler implements DataMessageHandler {
                                         )
                                 )
                 );
-                //todo - accountprovider class to handle this and create
                 break;
             case CREATE_ACCOUNT:
-                final String salt = blocks.get(3);
+                final String createUsername = blocks.get(1);
+                if (getDataProvider().queryAccount(createUsername)) {
+                    throw new IllegalArgumentException("Tried to create existing user: " + createUsername);
+                }
                 final String decryptedPassword =
                         CryptoUtilities.toAlphaNumeric(
                                 Encryption.encryptDecrypt(
@@ -64,18 +76,15 @@ public class WHostDataMessageHandler implements DataMessageHandler {
                                                 )
                                 )
                         );
-                final String hashedPassword = CryptoUtilities.hash(CryptoUtilities.salt(decryptedPassword, salt));
+                getDataProvider().createAccount(createUsername, decryptedPassword);
+                //todo - accountProvider.getAccount() and return to client
                 System.out.println(
                         "Received login data - Username: " +
                                 blocks.get(1) +
                                 "\nEncrypted Password: " +
                                 blocks.get(2) +
                                 "\nDecrypted Password: " +
-                                decryptedPassword +
-                                "\nSalt: " +
-                                salt +
-                                "\nHashed and Salted Password: " +
-                                hashedPassword
+                                decryptedPassword
                 );
                 break;
             default:
