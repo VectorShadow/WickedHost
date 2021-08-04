@@ -3,12 +3,13 @@ package vsdl.whost.exec;
 import vsdl.datavector.link.LinkSessionManager;
 import vsdl.whost.connections.ConnectionListenerDaemon;
 import vsdl.whost.connections.WHostDataMessageHandler;
-import vsdl.whost.data.provider.DataProvider;
+import vsdl.wl.data.WickedDatabaseManager;
+import vsdl.wrepo.manager.AbstractDatabaseManager;
 
 public class WHostEntityManager {
 
     private static ConnectionListenerDaemon connectionListenerDaemon = null;
-    private static DataProvider dataProvider = null;
+    private static AbstractDatabaseManager databaseManager = null;
     private static LinkSessionManager linkSessionManager = null;
 
     public static ConnectionListenerDaemon getConnectionListenerDaemon() {
@@ -18,11 +19,12 @@ public class WHostEntityManager {
         return connectionListenerDaemon;
     }
 
-    public static DataProvider getDataProvider() {
-        if (dataProvider == null) {
-            dataProvider = new DataProvider();
+    public static AbstractDatabaseManager getDatabaseManager() {
+        if (databaseManager == null) {
+            databaseManager = new WickedDatabaseManager();
+            databaseManager.startup();
         }
-        return dataProvider;
+        return databaseManager;
     }
 
     public static LinkSessionManager getLinkSessionManager() {
@@ -30,5 +32,10 @@ public class WHostEntityManager {
             linkSessionManager = new LinkSessionManager(new WHostDataMessageHandler());
         }
         return linkSessionManager;
+    }
+
+    public static void shutdown() {
+        connectionListenerDaemon.kill();
+        databaseManager.shutdown();
     }
 }

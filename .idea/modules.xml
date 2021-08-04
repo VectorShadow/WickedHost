@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/WickedHost.iml" filepath="$PROJECT_DIR$/WickedHost.iml" />
       <module fileurl="file://$PROJECT_DIR$/../WickedLauncher/WickedLauncher.iml" filepath="$PROJECT_DIR$/../WickedLauncher/WickedLauncher.iml" />
       <module fileurl="file://$PROJECT_DIR$/../WickedLegacy/WickedLegacy.iml" filepath="$PROJECT_DIR$/../WickedLegacy/WickedLegacy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../WickedRepository/WickedRepository.iml" filepath="$PROJECT_DIR$/../WickedRepository/WickedRepository.iml" />
     </modules>
   </component>
 </project>

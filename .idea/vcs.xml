@@ -4,6 +4,7 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../WickedLauncher" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../WickedLegacy" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../WickedRepository" vcs="Git" />
     <mapping directory="$USER_HOME$/uwm/DataVector" vcs="Git" />
     <mapping directory="$USER_HOME$/uwm/OmniGUI" vcs="Git" />
   </component>

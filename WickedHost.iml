@@ -9,5 +9,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="DataVector" exported="" />
     <orderEntry type="module" module-name="WickedLegacy" exported="" />
+    <orderEntry type="module" module-name="WickedRepository" exported="" />
   </component>
 </module>
