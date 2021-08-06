@@ -3,13 +3,12 @@ package vsdl.whost.exec;
 import vsdl.datavector.link.LinkSessionManager;
 import vsdl.whost.connections.ConnectionListenerDaemon;
 import vsdl.whost.connections.WHostDataMessageHandler;
-import vsdl.wl.data.WickedDatabaseManager;
-import vsdl.wrepo.manager.AbstractDatabaseManager;
+import vsdl.wrepo.cql.DatabaseManager;
 
 public class WHostEntityManager {
 
     private static ConnectionListenerDaemon connectionListenerDaemon = null;
-    private static AbstractDatabaseManager databaseManager = null;
+    private static DatabaseManager databaseManager = null;
     private static LinkSessionManager linkSessionManager = null;
 
     public static ConnectionListenerDaemon getConnectionListenerDaemon() {
@@ -19,9 +18,9 @@ public class WHostEntityManager {
         return connectionListenerDaemon;
     }
 
-    public static AbstractDatabaseManager getDatabaseManager() {
+    public static DatabaseManager getDatabaseManager() {
         if (databaseManager == null) {
-            databaseManager = new WickedDatabaseManager();
+            databaseManager = new DatabaseManager();
             databaseManager.startup();
         }
         return databaseManager;
