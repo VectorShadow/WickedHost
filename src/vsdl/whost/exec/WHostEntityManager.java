@@ -2,7 +2,7 @@ package vsdl.whost.exec;
 
 import vsdl.datavector.link.LinkSessionManager;
 import vsdl.whost.connections.ConnectionListenerDaemon;
-import vsdl.whost.connections.WHostDataMessageHandler;
+import vsdl.whost.connections.handlers.WHostDataMessageHandler;
 import vsdl.wrepo.cql.DatabaseManager;
 
 public class WHostEntityManager {
