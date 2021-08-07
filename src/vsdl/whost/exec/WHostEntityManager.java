@@ -14,6 +14,7 @@ public class WHostEntityManager {
     public static ConnectionListenerDaemon getConnectionListenerDaemon() {
         if (connectionListenerDaemon == null) {
             connectionListenerDaemon = new ConnectionListenerDaemon();
+            connectionListenerDaemon.start();
         }
         return connectionListenerDaemon;
     }
@@ -31,6 +32,12 @@ public class WHostEntityManager {
             linkSessionManager = new LinkSessionManager(new WHostDataMessageHandler());
         }
         return linkSessionManager;
+    }
+
+    public static void startup() {
+        getConnectionListenerDaemon();
+        getDatabaseManager();
+        getLinkSessionManager();
     }
 
     public static void shutdown() {

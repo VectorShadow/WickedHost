@@ -7,7 +7,6 @@
       <element id="module-output" name="WickedLegacy" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/20.1.0/annotations-20.1.0.jar" path-in-jar="/" />
       <element id="module-output" name="WickedRepository" />
-      <element id="library" level="project" name="Maven: com.datastax.cassandra:cassandra-driver-core:3.1.0" />
       <element id="library" level="project" name="Maven: io.netty:netty-handler:4.0.37.Final" />
       <element id="library" level="project" name="Maven: io.netty:netty-buffer:4.0.37.Final" />
       <element id="library" level="project" name="Maven: io.netty:netty-common:4.0.37.Final" />
@@ -72,6 +71,7 @@
       <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-library:1.3" />
       <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:1.7.12" />
       <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/20.1.0/annotations-20.1.0.jar" />
+      <element id="library" level="project" name="Maven: com.datastax.cassandra:cassandra-driver-core:3.1.0" />
     </root>
   </artifact>
 </component>
