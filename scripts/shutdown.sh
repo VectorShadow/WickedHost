@@ -1,3 +1,3 @@
+echo Shutting down database...
 docker kill cassandra
-sleep 30
-docker rm cassandra
+echo Database offline.
