@@ -27,13 +27,14 @@ public class LogonHandler extends AbstractHandler {
     }
 
     private boolean isUserExists(String username) {
-        List<WickedObjectModel> results = getDatabaseManager().query(QueryType.LOGIN_EXISTS, username);
+        List<WickedObjectModel> results = getDatabaseManager().query(QueryType.LOGON_USER_EXISTS, username);
         return ((BoolWOM)results.get(0)).value();
     }
 
     private boolean isCorrectPassword(String username, String decryptedPassword) {
-        //todo - query this
-        return false;
+        List<WickedObjectModel> results =
+                getDatabaseManager().query(QueryType.LOGON_USER_AUTH, username, decryptedPassword);
+        return ((BoolWOM)results.get(0)).value();
     }
 
     public void userLogonRequest(String username, String password, int connectionID) {
@@ -54,7 +55,10 @@ public class LogonHandler extends AbstractHandler {
                         decryptedPassword
         );
         if (!isCorrectPassword(username, decryptedPassword)) {
-            //todo - send login error message to client
+            sendByID(
+                    DataMessageBuilder.start(LOGON_ERR).addBlock(LOGON_INCORRECT_PASSWORD).build(),
+                    connectionID
+            );
             return;
         }
         //todo - implement queries in WickedDatabaseManager
