@@ -2,6 +2,7 @@ package vsdl.whost.connections.handlers;
 
 import vsdl.datavector.crypto.CryptoUtilities;
 import vsdl.datavector.crypto.Encryption;
+import vsdl.datavector.elements.DataMessageBuilder;
 import vsdl.wl.wom.BoolWOM;
 import vsdl.wl.wom.WickedObjectModel;
 import vsdl.wrepo.cql.query.QueryType;
@@ -9,8 +10,10 @@ import vsdl.wrepo.cql.query.QueryType;
 import java.util.List;
 
 import static vsdl.whost.exec.WHostEntityManager.*;
+import static vsdl.wl.elements.DataMessageErrors.*;
+import static vsdl.wl.elements.DataMessageHeaders.*;
 
-public class LogonHandler {
+public class LogonHandler extends AbstractHandler {
 
     private String decryptPassword(String encryptedPassword, int connectionID) {
         return CryptoUtilities.toAlphaNumeric(
@@ -35,12 +38,15 @@ public class LogonHandler {
 
     public void userLogonRequest(String username, String password, int connectionID) {
         if (!isUserExists(username)) {
-            //todo - send account does not exist message to client
+            sendByID(
+                    DataMessageBuilder.start(LOGON_ERR).addBlock(LOGON_USER_DID_NOT_EXIST).addBlock(username).build(),
+                    connectionID
+            );
             return;
         }
         String decryptedPassword = decryptPassword(password, connectionID);
         System.out.println(
-                "Received login data - Username: " +
+                "Received logon user data - Username: " +
                         username +
                         " Encrypted Password: " +
                         password +
@@ -63,7 +69,7 @@ public class LogonHandler {
         //todo - implement queries in WickedDatabaseManager
         String decryptedPassword = decryptPassword(password, connectionID);
         System.out.println(
-                "Received login data - Username: " +
+                "Received create user data - Username: " +
                         username +
                         "\nEncrypted Password: " +
                         password +

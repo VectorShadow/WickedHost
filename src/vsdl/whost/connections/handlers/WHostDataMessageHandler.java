@@ -31,10 +31,10 @@ public class WHostDataMessageHandler implements DataMessageHandler {
                                 )
                         );
                 break;
-            case LOGIN_ACCOUNT:
+            case LOGON_USER:
                 logonHandler.userLogonRequest(blocks.get(1), blocks.get(2), id);
                 break;
-            case CREATE_ACCOUNT:
+            case CREATE_USER:
                 logonHandler.userCreationRequest(blocks.get(1), blocks.get(2), id);
                 break;
             default:
